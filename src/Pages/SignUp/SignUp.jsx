@@ -1,20 +1,31 @@
 import { Link } from "react-router-dom";
-import login from "../../../src/assets/images/login/login.svg";
-const Login = () => {
+import signup from "../../../src/assets/images/login/login.svg";
+const SignUp = () => {
 
-    const handleLogin = e => {
+    const handleSignUp = e => {
         e.preventDefault()
     }
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row gap-20">
         <div className="w-1/2">
-          <img src={login} alt="" />
+          <img src={signup} alt="" />
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 ms-auto">
           <div className="card-body">
-            <h1 className="text-3xl font-bold text-center">Login</h1>
-            <form onSubmit={handleLogin}>
+            <h1 className="text-3xl font-bold text-center">Sign Up</h1>
+            <form onSubmit={handleSignUp}>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  name= "name"
+                  placeholder="name"
+                  className="input input-bordered"
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -28,12 +39,12 @@ const Login = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text">Confirm Password</span>
                 </label>
                 <input
                   type="password"
                   name="password"
-                  placeholder="password"
+                  placeholder="confirm password"
                   className="input input-bordered"
                 />
                 <label className="label">
@@ -46,10 +57,10 @@ const Login = () => {
                 <input
                   className="btn btn-secondary text-white"
                   type="submit"
-                  value="Login"
+                  value="Sign Up"
                 />
               </div>
-              <p className="text-sm text-center mt-3">New to car Doctor? <Link className="text-error font-bold" to="/signup">Sign Up</Link></p>
+              <p className="text-sm text-center mt-3">Already have an account? <Link className="text-error font-bold" to="/login">Login</Link></p>
             </form>
           </div>
         </div>
@@ -58,4 +69,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
