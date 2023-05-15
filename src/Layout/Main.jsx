@@ -3,13 +3,13 @@ import Footer from "../Pages/Shared/Footer/Footer";
 import NavBar from "../Pages/Shared/NavBar/NavBar";
 
 const Main = () => {
-  return (
-    <div>
-      <NavBar />
-      <Outlet />
-      <Footer />
-    </div>
-  );
+return (
+  <div>
+    <NavBar />
+    <Outlet />
+    <Footer />
+  </div>
+);
 };
 
 export default Main;

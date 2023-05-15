@@ -8,8 +8,8 @@ const Service = ({ service }) => {
       <div className="card-body items-center">
         <h2 className="card-title me-auto">{title}</h2>
         <p className="text-error font-semibold me-auto">Price: ${price}</p>
-        <div className="card-actions me-auto">
-          <button className="btn btn-primary">Buy Now</button>
+        <div className="card-actions ms-auto">
+        <button className="btn btn-secondary text-white">Buy now</button>
         </div>
       </div>
     </div>
