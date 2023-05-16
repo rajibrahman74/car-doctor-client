@@ -1,10 +1,27 @@
 import { Link } from "react-router-dom";
 import login from "../../../src/assets/images/login/login.svg";
-const Login = () => {
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
 
-    const handleLogin = e => {
-        e.preventDefault()
-    }
+const Login = () => {
+  const { signIn } = useContext(AuthContext);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row gap-20">
@@ -21,7 +38,7 @@ const Login = () => {
                 </label>
                 <input
                   type="email"
-                  name= "email"
+                  name="email"
                   placeholder="email"
                   className="input input-bordered"
                 />
@@ -49,7 +66,12 @@ const Login = () => {
                   value="Login"
                 />
               </div>
-              <p className="text-sm text-center mt-3">New to car Doctor? <Link className="text-error font-bold" to="/signup">Sign Up</Link></p>
+              <p className="text-sm text-center mt-3">
+                New to car Doctor?{" "}
+                <Link className="text-error font-bold" to="/signup">
+                  Sign Up
+                </Link>
+              </p>
             </form>
           </div>
         </div>

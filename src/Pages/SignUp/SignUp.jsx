@@ -1,10 +1,27 @@
 import { Link } from "react-router-dom";
 import signup from "../../../src/assets/images/login/login.svg";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
 
-    const handleSignUp = e => {
-        e.preventDefault()
-    }
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, password);
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row gap-20">
@@ -21,7 +38,7 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
-                  name= "name"
+                  name="name"
                   placeholder="name"
                   className="input input-bordered"
                 />
@@ -32,7 +49,7 @@ const SignUp = () => {
                 </label>
                 <input
                   type="email"
-                  name= "email"
+                  name="email"
                   placeholder="email"
                   className="input input-bordered"
                 />
@@ -60,7 +77,12 @@ const SignUp = () => {
                   value="Sign Up"
                 />
               </div>
-              <p className="text-sm text-center mt-3">Already have an account? <Link className="text-error font-bold" to="/login">Login</Link></p>
+              <p className="text-sm text-center mt-3">
+                Already have an account?{" "}
+                <Link className="text-error font-bold" to="/login">
+                  Login
+                </Link>
+              </p>
             </form>
           </div>
         </div>
