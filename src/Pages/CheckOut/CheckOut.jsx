@@ -41,11 +41,12 @@ const CheckOut = () => {
         console.log(data);
         if (data.insertedId) {
           Swal.fire({
-            title: "Success!",
-            text: "Your booking request send succeesfully",
-            icon: "success",
-            confirmButtonText: "Cool",
-          });
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your booking request send successfully!',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
       });
   };

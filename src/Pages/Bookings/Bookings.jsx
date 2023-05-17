@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import BookingRow from "./BookingRow";
+import Swal from "sweetalert2";
 
 const Bookings = () => {
   const { user } = useContext(AuthContext);
@@ -13,6 +14,36 @@ const Bookings = () => {
       .then((res) => res.json())
       .then((data) => setBookings(data));
   }, []);
+
+  // delete service data
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Are you sure want to delete this booking?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/bookings/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your booking has been deleted.", "success");
+              const remaining = bookings.filter(
+                (booking) => booking._id !== id
+              );
+              setBookings(remaining);
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div>
@@ -34,11 +65,16 @@ const Bookings = () => {
               <th>Service</th>
               <th>Coustomer Name</th>
               <th>Price</th>
+              <th>Date</th>
             </tr>
           </thead>
           <tbody>
             {bookings.map((booking) => (
-              <BookingRow key={booking._id} booking={booking}></BookingRow>
+              <BookingRow
+                key={booking._id}
+                booking={booking}
+                handleDelete={handleDelete}
+              ></BookingRow>
             ))}
           </tbody>
         </table>
