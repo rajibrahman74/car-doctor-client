@@ -6,6 +6,7 @@ import { AuthContext } from "../../providers/AuthProviders";
 
 const CheckOut = () => {
   const service = useLoaderData();
+  // console.log(service);
   const { _id, title, price, img } = service;
   const { user } = useContext(AuthContext);
 
@@ -107,7 +108,6 @@ const CheckOut = () => {
           />
         </div>
       </form>
-      {/* <div className="card-body"></div> */}
     </div>
   );
 };
