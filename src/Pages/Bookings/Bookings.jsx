@@ -7,14 +7,14 @@ const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://car-doctor-server-ten-drab.vercel.app/bookings?email=${user?.email}`;
 
   useEffect(() => {
     fetch(url, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        authorization: `Bearer ${localStorage.getItem("access token")}`
-      }
+        authorization: `Bearer ${localStorage.getItem("access token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => setBookings(data));
@@ -32,7 +32,7 @@ const Bookings = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookings/${id}`, {
+        fetch(`https://car-doctor-server-ten-drab.vercel.app/bookings/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -65,7 +65,7 @@ const Bookings = () => {
       confirmButtonText: "Yes, update it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookings/${id}`, {
+        fetch(`https://car-doctor-server-ten-drab.vercel.app/bookings/${id}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
