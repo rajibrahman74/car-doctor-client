@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import login from "../../../src/assets/images/login/login.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const location = useLocation()
+
+  const from = location.state?.from?.pathname || "/"
 
   const handleLogin = (e) => {
     e.preventDefault();
