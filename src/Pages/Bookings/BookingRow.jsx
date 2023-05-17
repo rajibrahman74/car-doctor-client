@@ -1,5 +1,5 @@
-const BookingRow = ({ booking, handleDelete }) => {
-  const { _id, customerName, date, service, price, img } = booking;
+const BookingRow = ({ booking, handleDelete, handleUpdate }) => {
+  const { _id, customerName, date, service, price, img, status } = booking;
 
   return (
     <tr>
@@ -35,6 +35,23 @@ const BookingRow = ({ booking, handleDelete }) => {
       <td>{customerName}</td>
       <td>${price}</td>
       <td>{date}</td>
+      <th>
+        {status === "confirm" ? (
+          <span
+            className="font-bold text-pri
+"
+          >
+            Approved
+          </span>
+        ) : (
+          <button
+            onClick={() => handleUpdate(_id)}
+            className="btn btn-ghost btn-xs"
+          >
+            Please approve
+          </button>
+        )}
+      </th>
     </tr>
   );
 };
