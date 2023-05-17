@@ -50,7 +50,7 @@ return (
           </p>
           <div className="space-x-4">
             <button className="btn btn-secondary">Discover More</button>
-            <button className="btn btn-outline hover:border-secondary text-white btn-white">
+            <button className="btn btn-outline hover:border-secondary text-white">
               Latest Project
             </button>
           </div>
